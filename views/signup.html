@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+</head>
+<body>
+    <h4>signup</h4>
+         <div>
+               <form id="formid">
+                    <label for="d">
+                        name
+
+                    </label>
+
+                    <input type="text" name="name" id="nameid">
+                    <label for="d">
+                        password
+
+                    </label>
+
+                    <input type="password" name="password" id="passwordid">
+
+                    <button type="submit" id="signupsubmit" >signup</button>
+
+                    <button id="loginbuttons" type="button">login</button>
+                </form>
+         </div>
+         <script>
+             document.getElementById("formid").addEventListener("submit",function (e) {
+                  e.preventDefault();
+                  var name= document.getElementById("nameid").value;
+                  var password= document.getElementById("passwordid").value;
+              
+
+
+                  
+  
+                  console.log(name);
+                  console.log(password)
+                  fetch("signup",{
+    method:'POST',
+    headers:{
+        'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+        "name":name,
+        "password":password
+    })
+    
+  }).then(function(res){
+                      return res.json();
+                  }).then(function(token){
+
+                  window.localStorage.setItem("token",token)
+
+                  })
+             })
+         </script>
+</body>
+</html>
