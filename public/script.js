@@ -15,7 +15,8 @@ if (v==null) {
 
 
 document.getElementById("loginform").addEventListener("submit",(e)=>{
-e.preventDefault();
+
+e.preventDefault()
 var name = document.getElementById("nameid").value;
 var password = document.getElementById("passwordid").value;
 
@@ -33,6 +34,8 @@ fetch('/login',{
 }).then((res)=>{
      return res.json();
 }).then((token)=>{
+
+  
   window.localStorage.setItem("token",token)
 })
 

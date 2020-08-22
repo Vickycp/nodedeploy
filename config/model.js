@@ -13,8 +13,17 @@ var myuser= new Schema({
         required:true
     }
 });
-
-
+var googleuser=new Schema({
+    email:{
+        type:String,
+        required:true
+    },
+    name:{
+        type:String,
+        required:true
+    }
+})
+var GoogleUser =mongoose.model("Googleuser",googleuser)
 var user = mongoose.model("Myuser",myuser)
 
-module.exports= user;
+module.exports= {nuser:user,guser:GoogleUser};
