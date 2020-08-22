@@ -119,7 +119,7 @@ app.route('/login').get((req, res) => {
  
 
 });
-app.route('/googlesignup').post(async(req,res)=>{
+app.route('/google').post(async(req,res)=>{
                     
              var email=req.body.email;
              var name=req.body.name;
