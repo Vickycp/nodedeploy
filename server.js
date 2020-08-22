@@ -22,6 +22,14 @@ app.use(session({
    saveUninitialized:true
 }))
 
+
+
+const PORT = process.env.PORT || 9000;
+
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
+
 app.route("/").get((req, res) => {
 
 
@@ -140,7 +148,7 @@ app.route('/googlesignup').post(async(req,res)=>{
 
 
 db.then((result) => {
-   app.listen(9000, () => {
+   app.listen(PORT, () => {
       console.log("start");
    })
 })
