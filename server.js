@@ -58,8 +58,8 @@ app.route('/signup').get((req, res) => {
             console.log(data)
            var token= jwt.sign({user:data},'shhhhh')
            
-            // res.json(token);
-            res.cookie('v',token)
+             res.json(token);
+            // res.cookie('v',token)
 
          } else {
 
@@ -111,7 +111,7 @@ app.route('/login').get((req, res) => {
  
 
 });
-app.route('/googlesignup').get((req,res)=>{
+app.route('/googlesignup').post(async(req,res)=>{
                     
              var email=req.body.email;
              var name=req.body.name;
@@ -119,6 +119,21 @@ app.route('/googlesignup').get((req,res)=>{
                    email:email,
                    name:name
             })
+            await g.save((err, data) => {
+               // if (err) return res.statusCode(401);
+               if (data != null) {
+                  console.log(data)
+                 var token= jwt.sign({user:data},'shhhhh')
+                 
+                  res.json(token);
+                  // res.cookie('v',token)
+      
+               } else {
+      
+                  res.send("wait")
+         
+               }
+            });
 
 })
 
