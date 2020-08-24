@@ -106,7 +106,7 @@ authrouts.get('/signup',(req, res) => {
  })
 
 
- authrouts.get("/checkuser/email=:email", (req,res)=>{
+ authrouts.get("/checkuser?email=:email", (req,res)=>{
    user.nuser.find({name:{$regex:new RegExp(req.params.email)}}).then((result)=>{
       if(result.length!=0){
 
