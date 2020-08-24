@@ -8,15 +8,15 @@ const authrouts=expre.Router();
 authrouts.get('/signup',(req, res) => {
     res.sendFile(__dirname + "/views/signup.html")
  }).post( (req, res) => {
-    var name = req.body.name
+    var email = req.body.email
     var password = req.body.password
  
-    console.log(name)
+    console.log(email)
     
     bcrypt.hash(password,10,async function(err,result){
        if(err) return res.sendStatus(401);
       var u = new user.nuser({
-          name: name,
+          email: email,
           password: result
        })
  
@@ -49,7 +49,7 @@ authrouts.get('/signup',(req, res) => {
  authrouts.get('/login',(req, res) => {
     res.sendFile(__dirname + "/views/index.html")
  }).post(async (req, res) => {
-    var name = req.body.name
+    var email = req.body.email
     var password = req.body.password
  
  
@@ -57,7 +57,7 @@ authrouts.get('/signup',(req, res) => {
  
     console.log(password);
     
-     user.nuser.findOne({"name":name}).then((user)=>{
+     user.nuser.findOne({"email":email}).then((user)=>{
          
           bcrypt.compare(password,user.password,(err,result)=>{
                     
@@ -106,8 +106,8 @@ authrouts.get('/signup',(req, res) => {
  })
 
 
- authrouts.get("/checkuser?email=:email", (req,res)=>{
-   user.nuser.find({name:{$regex:new RegExp(req.params.email)}}).then((result)=>{
+ authrouts.get("/checkuser/email=:email", (req,res)=>{
+   user.nuser.find({email:{$regex:new RegExp(req.params.email)}}).then((result)=>{
       if(result.length!=0){
 
       res.send(result);
