@@ -16,7 +16,7 @@ authrouts.get('/signup',(req, res) => {
     bcrypt.hash(password,10,async function(err,result){
        if(err) return res.sendStatus(401);
       var u = new user.nuser({
-          email: email,
+          email:email,
           password: result
        })
  
@@ -106,25 +106,25 @@ authrouts.get('/signup',(req, res) => {
  })
 
 
- authrouts.get("/checkuser/email=:email", (req,res)=>{
-   user.nuser.find({email:{$regex:new RegExp(req.params.email)}}).then((result)=>{
-      if(result.length!=0){
+//  authrouts.get("/checkuser/email=:email", (req,res)=>{
+//    user.nuser.find({email:{$regex:new RegExp(req.params.email)}}).then((result)=>{
+//       if(result.length!=0){
 
-      res.send(result);
-      }else{
-          res.send('no data found');
-      }
+//       res.send(result);
+//       }else{
+//           res.send('no data found');
+//       }
 
-   }).catch((err)=>{
-       res.status("404").send("error")
+//    }).catch((err)=>{
+//        res.status("404").send("error")
        
-   })
+//    })
 
 
 
 
 
- })
+//  })
  
 
 
