@@ -104,6 +104,27 @@ authrouts.get('/signup',(req, res) => {
              });
  
  })
+
+
+ authrouts.get("/checkuser/email=:email", (req,res)=>{
+   user.nuser.find({name:{$regex:new RegExp(req.params.email)}}).then((result)=>{
+      if(result.length!=0){
+
+      res.send(result);
+      }else{
+          res.send('no data found');
+      }
+
+   }).catch((err)=>{
+       res.status("404").send("error")
+       
+   })
+
+
+
+
+
+ })
  
 
 
