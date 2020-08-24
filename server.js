@@ -8,7 +8,7 @@ const cookie= require('cookie-parser')
 const session = require('express-session')
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const route = require('./routs/authrouts');
+const authrouts = require('./routs/authrouts');
 const app = express()
 
 
@@ -44,8 +44,7 @@ app.route("/").get((req, res) => {
   
 })
 
-app.use(route)
-
+app.use(authrouts)
 
 db.then((result) => {
    app.listen(PORT, () => {

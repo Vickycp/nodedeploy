@@ -1,8 +1,11 @@
 
 const expre = require("express") 
-const route=expre.Router();
+const jwt = require('jsonwebtoken')
+const user = require('../config/model')
 
-route('/signup').get((req, res) => {
+const authrouts=expre.Router();
+
+authrouts.get('/signup',(req, res) => {
     res.sendFile(__dirname + "/views/signup.html")
  }).post( (req, res) => {
     var name = req.body.name
@@ -43,7 +46,7 @@ route('/signup').get((req, res) => {
  })
  
  
- route('/login').get((req, res) => {
+ authrouts.get('/login',(req, res) => {
     res.sendFile(__dirname + "/views/index.html")
  }).post(async (req, res) => {
     var name = req.body.name
@@ -76,7 +79,7 @@ route('/signup').get((req, res) => {
   
  
  });
- route('/google').post(async(req,res)=>{
+ authrouts.post('/google',async(req,res)=>{
                      
               var email=req.body.email;
               var name=req.body.name;
@@ -104,4 +107,4 @@ route('/signup').get((req, res) => {
  
 
 
- module.exports=route
+ module.exports=authrouts
