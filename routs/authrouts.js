@@ -117,10 +117,11 @@ authrouts.get("/checkuser/email=:email", (req, res) => {
          res.status(404).send('no data found');
       }
 
-   }).catch((err) => {
-      res.status("401").send(err)
-
    })
+   // .catch((err) => {
+   //    res.status("401").send(err)
+
+   // })
 
 
 
