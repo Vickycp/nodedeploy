@@ -114,7 +114,7 @@ authrouts.get("/checkuser/email=:email", (req, res) => {
 
          res.status(200).json(result);
       } else {
-         res.status(404).send('no data found');
+         res.status(404).send('no datas found');
       }
 
    })
