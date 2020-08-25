@@ -1,11 +1,13 @@
 
 const expre = require("express") 
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
 const user = require('../config/model')
 
 const authrouts=expre.Router();
 
-authrouts.get('/signup',(req, res) => {
+
+authrouts.route('/signup').get((req, res) => {
     res.sendFile(__dirname + "/views/signup.html")
  }).post( (req, res) => {
     var email = req.body.email
@@ -46,7 +48,7 @@ authrouts.get('/signup',(req, res) => {
  })
  
  
- authrouts.get('/login',(req, res) => {
+ authrouts.route('/login').get((req, res) => {
     res.sendFile(__dirname + "/views/index.html")
  }).post(async (req, res) => {
     var email = req.body.email
@@ -106,25 +108,25 @@ authrouts.get('/signup',(req, res) => {
  })
 
 
-//  authrouts.get("/checkuser/email=:email", (req,res)=>{
-//    user.nuser.find({email:{$regex:new RegExp(req.params.email)}}).then((result)=>{
-//       if(result.length!=0){
+ authrouts.get("/checkuser/email=:email", (req,res)=>{
+   user.nuser.find({email:{$regex:new RegExp(req.params.email)}}).then((result)=>{
+      if(result.length!=0){
 
-//       res.send(result);
-//       }else{
-//           res.send('no data found');
-//       }
+      res.send(result);
+      }else{
+          res.send('no data found');
+      }
 
-//    }).catch((err)=>{
-//        res.status("404").send("error")
+   }).catch((err)=>{
+       res.status("404").send("error")
        
-//    })
+   })
 
 
 
 
 
-//  })
+ })
  
 
 
