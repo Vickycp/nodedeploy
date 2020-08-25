@@ -112,7 +112,7 @@ authrouts.route('/signup').get((req, res) => {
    user.nuser.find({email:{$regex:new RegExp(req.params.email)}}).then((result)=>{
       if(result.length!=0){
 
-      res.send(result);
+      res.json(result);
       }else{
           res.send('no data found');
       }
